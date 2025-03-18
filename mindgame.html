@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mind Memory Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f5e6cc;
+            color: #5a3e1b;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .game-box {
+            padding: 20px;
+            background-color: #c19a6b;
+            border-radius: 10px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .number-box {
+            font-size: 30px;
+            padding: 20px;
+            background-color: #8b5e3b;
+            color: white;
+            border-radius: 10px;
+            display: inline-block;
+            margin-bottom: 20px;
+            width: 200px;
+        }
+        input {
+            padding: 10px;
+            border: 2px solid #5a3e1b;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #5a3e1b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #4a2f14;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Memory Challenge</h1>
+        <p>Memorize the number and enter it correctly.</p>
+        <div class="game-box">
+            <div class="number-box" id="numberBox"></div>
+        </div>
+        <br>
+        <input type="text" id="userInput" placeholder="Enter the number" />
+        <button onclick="checkNumber()">Submit</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        let generatedNumber = "";
+
+        function generateNumber() {
+            generatedNumber = Math.floor(100000 + Math.random() * 900000).toString();
+            document.getElementById("numberBox").innerText = generatedNumber;
+            setTimeout(() => {
+                document.getElementById("numberBox").innerText = "?";
+            }, 800);
+        }
+
+        function checkNumber() {
+            let userInput = document.getElementById("userInput").value;
+            if (userInput === generatedNumber) {
+                document.getElementById("result").innerText = "Correct! Well done!";
+            } else {
+                document.getElementById("result").innerText = "Wrong! Try again.";
+            }
+            generateNumber();
+        }
+
+        generateNumber();
+    </script>
+</body>
+</html>
